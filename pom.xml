@@ -23,7 +23,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
-            <version>${allure.version}</version>
+            <version>2.21.0</version>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -34,7 +34,7 @@
             <!--  модуль взаимодействия Allure и RestAssured  -->
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-rest-assured</artifactId>
-            <version>${allure.version}</version>
+            <version>2.21.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
