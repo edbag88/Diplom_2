@@ -1,4 +1,4 @@
-package OrderSteps;
+package order_steps;
 
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;

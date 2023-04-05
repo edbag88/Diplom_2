@@ -1,7 +1,7 @@
-package UserSteps;
-import Config.Config;
-import Dto.UserCreateDTO;
-import Dto.UserLoginDTO;
+package user_steps;
+import сonfig.Config;
+import dto.UserCreateDTO;
+import dto.UserLoginDTO;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
@@ -12,7 +12,7 @@ public class UserRequest extends Config {
     private final String LOGIN = ROOT + "/login";
 
     @Step("Запрос на создание пользователя")
-    public ValidatableResponse create(UserCreateDTO userCreateDTO) {
+    public ValidatableResponse createUser(UserCreateDTO userCreateDTO) {
         return spec()
                 .body(userCreateDTO)
                 .when()
@@ -21,7 +21,7 @@ public class UserRequest extends Config {
     }
 
     @Step("Запрос на удаление пользователя")
-    public ValidatableResponse delete(String token) {
+    public ValidatableResponse deleteUser(String token) {
         return spec()
                 .header("Authorization", token)
                 .when()
@@ -30,7 +30,7 @@ public class UserRequest extends Config {
     }
 
     @Step("Запрос на въезд курьера")
-    public ValidatableResponse login(UserLoginDTO userLoginDTO) {
+    public ValidatableResponse loginUser(UserLoginDTO userLoginDTO) {
         return spec()
                 .body(userLoginDTO)
                 .when()
@@ -39,7 +39,7 @@ public class UserRequest extends Config {
     }
 
     @Step("Запрос на изменение данных пользователя")
-    public ValidatableResponse update(String token, UserCreateDTO userCreateDTO) {
+    public ValidatableResponse updateUser(String token, UserCreateDTO userCreateDTO) {
         return spec()
                 .header("Authorization", token)
                 .body(userCreateDTO)

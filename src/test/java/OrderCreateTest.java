@@ -1,10 +1,10 @@
-import Dto.OrderCreateDTO;
-import Dto.UserCreateDTO;
-import OrderSteps.OrderClientSteps;
-import OrderSteps.OrderCreateSteps;
-import UserSteps.UserGenerator;
-import UserSteps.UserRequest;
-import UserSteps.UserResponse;
+import dto.OrderCreateDTO;
+import dto.UserCreateDTO;
+import order_steps.OrderClientSteps;
+import order_steps.OrderCreateSteps;
+import user_steps.UserGenerator;
+import user_steps.UserRequest;
+import user_steps.UserResponse;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -21,18 +21,21 @@ public class OrderCreateTest {
     private final UserCreateDTO uniqueUser = userGenerator.randomDataCourier();
     private final OrderCreateSteps orderCreateSteps = new OrderCreateSteps();
     private String accessToken;
+
     @Before
     public void setUpUser() {
-        ValidatableResponse create = userRequest.create(uniqueUser);
+        ValidatableResponse create = userRequest.createUser(uniqueUser);
         accessToken = userResponse.assertCreationSusses(create);
     }
+
     @After
     public void deleteUser() {
         if (accessToken != null) {
-            ValidatableResponse response = userRequest.delete(accessToken);
+            ValidatableResponse response = userRequest.deleteUser(accessToken);
             userResponse.assertDeleteSusses(response);
         }
     }
+
     @DisplayName("Проверка создания заказа зарегистрированным пользователем")
     @Test
     public void testOrderCreationByRegisteredUser() {
@@ -41,6 +44,7 @@ public class OrderCreateTest {
         ValidatableResponse response = orderClientSteps.createOrders(accessToken, orderCreateDTO);
         orderCreateSteps.createOrderSuccess(response);
     }
+
     @DisplayName("Проверка создания заказа незарегистрированным пользователем")
     @Test
     public void testOrderCreationByUnregisteredUser() {
@@ -49,6 +53,7 @@ public class OrderCreateTest {
         ValidatableResponse response = orderClientSteps.createOrders("1", orderCreateDTO);
         orderCreateSteps.createOrderSuccess(response);
     }
+
     @DisplayName("Проверка на ошибку при попытке создать заказ без ингредиентов")
     @Test
     public void testOrderCreationErrorWithoutIngredients() {
@@ -56,6 +61,7 @@ public class OrderCreateTest {
         ValidatableResponse response = orderClientSteps.createOrders(accessToken, orderCreateDTO);
         orderCreateSteps.createOrderNoIngredients(response);
     }
+
     @DisplayName("Проверка на ошибку при попытке создать заказ с недопустимыми хэшами ингредиентов")
     @Test
     public void testOrderCreationErrorWithInvalidIngredientHashes() {

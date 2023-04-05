@@ -1,6 +1,6 @@
-package OrderSteps;
-import Config.Config;
-import Dto.OrderCreateDTO;
+package order_steps;
+import сonfig.Config;
+import dto.OrderCreateDTO;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 

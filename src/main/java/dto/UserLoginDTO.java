@@ -1,18 +1,20 @@
-package Dto;
+package dto;
 
 
-public class UserCreateDTO {
+public class UserLoginDTO {
     private String email;
     private String password;
-    private String name;
 
-    public UserCreateDTO(String email, String password, String name) {
+    public UserLoginDTO(String email, String password) {
         this.email = email;
         this.password = password;
-        this.name = name;
     }
 
-    public UserCreateDTO() {
+    public UserLoginDTO() {
+    }
+
+    public static UserLoginDTO from(UserCreateDTO userCreateDTO) {
+        return new UserLoginDTO(userCreateDTO.getEmail(), userCreateDTO.getPassword());
     }
 
     public String getEmail() {
@@ -29,13 +31,5 @@ public class UserCreateDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

@@ -1,6 +1,6 @@
-package UserSteps;
+package user_steps;
 
-import Dto.UserCreateDTO;
+import dto.UserCreateDTO;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserGenerator {
